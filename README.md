@@ -1,60 +1,90 @@
 # Pathora
+**Turning Skills Into Opportunities**
 
-**Tagline:** Turning Skills Into Opportunities
+Pathora is a React + TypeScript + Vite web application. This repository currently includes a frontend, demo data, and Supabase authentication client integration.
 
-A responsive React + TypeScript demo application for exploring career paths, sample labour-market signals, skill gaps, learning suggestions, employer hiring workflows, and reports.
+## Tech stack
+- React 18, TypeScript, Vite
+- React Router, Tailwind CSS
+- Lucide React, Recharts
+- Supabase Auth (`@supabase/supabase-js`)
+- Vercel hosting and GitHub source control
 
 ## Requirements
-
-- Node.js 20.19+ or 22.12+ recommended
+- Node.js (current LTS recommended)
 - npm
+- A Supabase project for authentication
 
 ## Run locally
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Devakawale/Pathora.git
+   cd Pathora
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Create `.env.local` in the project root:
+   ```dotenv
+   VITE_SUPABASE_URL=https://YOUR_PROJECT_REF.supabase.co
+   VITE_SUPABASE_PUBLISHABLE_KEY=YOUR_SUPABASE_PUBLISHABLE_KEY
+   ```
+   Replace placeholders with your own Supabase values. Never commit `.env.local`.
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+5. Open the local URL printed by Vite.
 
-```bash
-npm install
-npm run dev
-```
-
-Open the local URL printed by Vite (usually `http://localhost:5173`).
-
-Create a production build with:
-
+## Build
 ```bash
 npm run build
 npm run preview
 ```
+Vite outputs the production build to `dist/`.
 
-## Demo workflows
+## Environment variables
 
-- Landing page CTAs navigate to registration or login.
-- Login and registration validate basic input and save a demo profile in browser local storage.
-- "Continue with demo account" opens the dashboard without entering credentials.
-- Dashboard navigation uses React Router.
-- Labour market table supports search, role type filter, sorting, and pagination.
-- Skill gap sliders update current proficiency and average score.
-- Career suggestions can be saved to local storage.
-- Hiring console supports candidate search, status filtering, quick profile review, and demo status updates.
-- Reports can export a CSV and open the browser print dialog.
-- Dashboard opportunity bookmarks can be toggled.
+| Variable | Required | Description |
+|---|---|---|
+| `VITE_SUPABASE_URL` | Yes | Supabase project URL |
+| `VITE_SUPABASE_PUBLISHABLE_KEY` | Yes | Supabase browser publishable/anon key |
 
-## Demo data and limitations
+Important: Vite variables prefixed with `VITE_` are included in client-side code. Never put a Supabase `service_role` key, database password, or server secret in a `VITE_` variable.
 
-All market metrics, job listings, candidate profiles, fit scores, trends, and training suggestions are illustrative. They are not verified real-world data and are not a live labour-market feed.
+## Supabase production setup
+1. In Supabase, open **Authentication → URL Configuration**.
+2. Set Site URL to your deployed website URL.
+3. Add your production URL to Redirect URLs, for example `https://YOUR-VERCEL-DOMAIN.vercel.app/**`.
+4. Keep your local development URL in Redirect URLs if needed.
+5. Configure email confirmation and password reset settings as required.
 
-Authentication is a local demo gate, not secure authentication. Data is not stored in a backend, and candidate changes are not persisted across refreshes. There are no real job posting, employer, learning-provider, notification, or market-data integrations. Do not use this demo to store real personal information.
+## Deploy to Vercel
+1. Import `Devakawale/Pathora` from GitHub.
+2. Select the Vite preset and repository root.
+3. Add `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` in Vercel Environment Variables for Production (and Preview/Development if required).
+4. Deploy, then configure Supabase URL settings for the production domain.
+5. Test signup, confirmation, login, logout and password reset.
 
-## Central brand configuration
+## Repository layout
+```text
+src/
+  components/   Reusable UI components
+  config/       Brand configuration
+  data/         Demo/sample data
+  lib/          Supabase client
+  pages/        Application pages
+  App.tsx
+  main.tsx
+  styles.css
+docs/
+  TECHNICAL_DESIGN.md
+  TEST_CASES.md
+  sample-data.json
+```
 
-Edit `src/config/brand.ts` to change:
-- Product name and tagline
-- Logo monogram
-- Theme colour values
-- Navigation labels and paths
-- Demo mode flag
+See `docs/TEST_CASES.md` for manual tests and `docs/sample-data.json` for illustrative fixtures. These are not automated tests.
 
-The colour tokens are also defined in `tailwind.config.js`; most interface styles are in `src/styles.css`.
-
-## Reference video note
-
-This initial build is based on the written product brief because the reference recording was not available among the files exposed to the build environment. The page inventory should be checked against the recording before calling this a faithful recreation.
+## License
+This repository includes the MIT License. See `LICENSE`.

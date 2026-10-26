@@ -1,0 +1,35 @@
+{
+  "description": "Illustrative non-production data for documentation and UI testing. It does not create backend records.",
+  "opportunityExamples": [
+    {
+      "id": "sample-opportunity-001",
+      "title": "Junior Frontend Developer",
+      "category": "Technology",
+      "skills": ["HTML", "CSS", "JavaScript", "React"],
+      "experienceLevel": "Entry level",
+      "sampleOnly": true
+    },
+    {
+      "id": "sample-opportunity-002",
+      "title": "Data Analyst Intern",
+      "category": "Data",
+      "skills": ["Spreadsheets", "SQL", "Data visualization"],
+      "experienceLevel": "Internship",
+      "sampleOnly": true
+    }
+  ],
+  "skillExamples": [
+    {
+      "id": "sample-skill-001",
+      "name": "Communication",
+      "category": "Professional skill",
+      "sampleOnly": true
+    },
+    {
+      "id": "sample-skill-002",
+      "name": "React",
+      "category": "Technical skill",
+      "sampleOnly": true
+    }
+  ]
+}
